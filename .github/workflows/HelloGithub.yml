@@ -5,7 +5,7 @@ name: Hello
 #This is a trigger
 on:
     push:
-    branches: [main]
+     branches: [main]
 #These are jobs inside the workflow
 jobs:
 
@@ -14,8 +14,7 @@ jobs:
       #This is a GitHub runner runs each job mentioned.
       runs-on: ubuntu-latest 
     steps:
-        - name: says hello to users
-          run: echo "Hello Dosto"
-        
-        - name: says hello to user
-          run: echo "Hello $user"
+    - name: says hello to users
+       run: echo 'Hello Dosto'
+    - name: says hello to user
+       run: echo 'Hello $user'
