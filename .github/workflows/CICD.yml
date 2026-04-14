@@ -6,6 +6,8 @@ on:
    enviroment:
    description: This is the enviorment value where the workflow runs
    default: 'dev'
+   required: true
+   type: choice
    options:
      - dev
      - staging
