@@ -1,0 +1,11 @@
+---
+name: Myfirstyaml
+on:
+    push: 
+    branches: [main]
+jobs:
+  greets:
+  runs-on: ubuntu-latest
+  steps:
+      - name: prints my name
+        run: echo "MY NAME IS ATHARVA"
