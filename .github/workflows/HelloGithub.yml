@@ -4,8 +4,7 @@ name: Hello
 
 #This is a trigger
 on:
-    push:
-     branches: [main]
+ workflow_dispatch: 
 #These are jobs inside the workflow
 jobs:
 
