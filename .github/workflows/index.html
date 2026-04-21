@@ -3,58 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Portfolio</title>
-</head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4;">
+    <title>Atharva Khilari | DevOps & Tech Influencer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #fbbf24;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg: #0f172a;
+        }
 
-    <!-- Navigation -->
-    <header style="background: #333; color: #fff; padding: 1rem 0; text-align: center;">
-        <h1>Your Name</h1>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+
+        /* Animated Background Gradients */
+        .blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Glass Morph Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 1rem 0;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 10%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Project Cards (Glassmorphism) */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 32px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob"></div>
+
+    <header>
+        <div style="font-weight: 800; font-size: 1.5rem;">AK.</div>
         <nav>
-            <a href="#about" style="color: #fff; margin: 0 15px; text-decoration: none;">About</a>
-            <a href="#projects" style="color: #fff; margin: 0 15px; text-decoration: none;">Projects</a>
-            <a href="#contact" style="color: #fff; margin: 0 15px; text-decoration: none;">Contact</a>
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Connect</a>
         </nav>
     </header>
 
-    <!-- About Section -->
-    <section id="about" style="padding: 2rem; max-width: 800px; margin: auto; background: #fff;">
-        <h2>About Me</h2>
-        <p>Hello! I am a passionate web developer dedicated to building clean and functional websites. This is my basic portfolio built using only HTML and inline styling.</p>
+    <section class="hero">
+        <span style="color: var(--secondary); font-weight: 600;">Namaste, I'm</span>
+        <h1>Atharva Khilari</h1>
+        <p>DevOps Engineer | Cloud Architect | Tech Influencer. <br>
+           Automating the future from Pune, one container at a time.</p>
+        <div>
+            <a href="#projects" class="btn">View My GitHub</a>
+        </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" style="padding: 2rem; max-width: 800px; margin: auto;">
-        <h2>My Projects</h2>
-        <table border="1" width="100%" cellpadding="10" style="border-collapse: collapse; background: #fff;">
-            <tr>
-                <th>Project Name</th>
-                <th>Description</th>
-                <th>Link</th>
-            </tr>
-            <tr>
-                <td>Personal Blog</td>
-                <td>A simple blog platform built with HTML and CSS.</td>
-                <td><a href="#">View Project</a></td>
-            </tr>
-            <tr>
-                <td>Task Manager</td>
-                <td>A productivity app for tracking daily goals.</td>
-                <td><a href="#">View Project</a></td>
-            </tr>
-        </table>
+    <section id="about">
+        <h2>The Journey</h2>
+        <div class="card" style="max-width: 900px; margin: 0 auto;">
+            <p>I am a 24-year-old Tech Enthusiast with a deep focus on <strong>DevOps and System Administration</strong>. From mastering the Linux command line to orchestrating Kubernetes clusters, my path is driven by the "Zero to Hero" mindset. Proud member of <strong>Josh Batch 10</strong>, currently bridging the gap between database development and scalable AWS infrastructure.</p>
+        </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" style="padding: 2rem; max-width: 800px; margin: auto; background: #fff; text-align: center;">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com" target="_blank">View Profile</a></p>
+    <section id="projects">
+        <h2>Featured Builds</h2>
+        <div class="project-grid">
+            <div class="card">
+                <div class="tag">Containerization</div>
+                <h3>AI-BankApp-DevOps</h3>
+                <p>A full-stack containerized banking application utilizing Docker Compose, MySQL, and Ollama for AI-driven financial insights.</p>
+            </div>
+            <div class="card">
+                <div class="tag">Infrastructure</div>
+                <h3>Personal Cloud Server</h3>
+                <p>Built a custom 1TB home server with NVMe caching and LVM management for secure, private data hosting.</p>
+            </div>
+            <div class="card">
+                <div class="tag">Automation</div>
+                <h3>90 Days of DevOps</h3>
+                <p>A continuous learning streak documenting CI/CD pipelines, Terraform scripts, and GitHub Actions automation.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- Footer -->
-    <footer style="text-align: center; padding: 1rem; background: #333; color: #fff;">
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    <section id="contact">
+        <div class="contact-box">
+            <h2>Ready to Scale?</h2>
+            <p>Whether you're from the Josh Batch community or a fellow developer, let's connect and build something impactful.</p>
+            <a href="mailto:contact@atharvakhilari.com" class="btn">Say Hello</a>
+            <div style="margin-top: 2rem;">
+                <a href="#" style="color: white; margin: 0 10px;">LinkedIn</a>
+                <a href="#" style="color: white; margin: 0 10px;">Twitter</a>
+                <a href="#" style="color: white; margin: 0 10px;">Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Atharva Khilari. Built with precision in Pune.</p>
     </footer>
 
 </body>
