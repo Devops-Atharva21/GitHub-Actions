@@ -25,6 +25,6 @@ jobs:
               run: pip install -r requirements.txt
 
             - name: run lint
-              run: flake app.py   
+              run: flake8 app.py   
              
 
