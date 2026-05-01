@@ -1,0 +1,28 @@
+name: Deploy flask App
+
+on :
+    workflow_run:
+        workflows: ["docker-build-push"]
+        types: [completed]
+        branches:
+            - main
+
+jobs:
+
+    deploys:
+        if: github.event.workflow_run.conclusion == 'sucess'
+        env:
+             DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+             DOCKERHUB_TAG: ${{ github.event.workflow_run.head_sha }}
+
+        runs-on: self-hosted
+     
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: set up docker compose
+              uses: docker/setup-compose-action@v2
+
+            - name: deploy with docker compose
+              run: docker compose down && docker compose op -d --build --force-recreate --pull always
