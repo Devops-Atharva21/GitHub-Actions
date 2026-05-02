@@ -2,7 +2,7 @@ name: Deploy flask App
 
 on :
     workflow_run:
-        workflows: ["docker-build-push"]
+        workflows: ["Docker Build & Push"]
         types: [completed]
         branches:
             - main
