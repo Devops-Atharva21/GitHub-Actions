@@ -10,7 +10,7 @@ on :
 jobs:
 
     deploys:
-        if: github.event.workflow_run.conclusion == 'sucess'
+        if: github.event.workflow_run.conclusion == 'success'
         env:
              DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
              DOCKERHUB_TAG: ${{ github.event.workflow_run.head_sha }}
@@ -25,4 +25,4 @@ jobs:
               uses: docker/setup-compose-action@v2
 
             - name: deploy with docker compose
-              run: docker compose down && docker compose op -d --build --force-recreate --pull always
+              run: docker compose down && docker compose up -d --build --force-recreate --pull always
