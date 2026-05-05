@@ -2,8 +2,9 @@
 name: Myfirstyaml
 
 on:
-    push: 
-     branches: [main]
+  workflow_dispatch:
+    #push: 
+    # branches: [main]
 jobs:
   greets:
     runs-on: ubuntu-latest
