@@ -1,0 +1,35 @@
+name: Devsecops End to End Pipeline
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    code-quality:
+        uses: ./.github/workflows/code-quality.yml
+
+    secerts-scan:
+        uses: ./.github/workflows/secerts-scan.yml
+
+    dependecy-scan:
+        uses: ./.github/workflows/dependency-scan.yml
+
+    docker-scan:
+        uses: ./.github/workflows/docker-lint.yml
+
+    test:
+        uses: ./.github/workflows/tests.yml
+
+    build:
+        needs: [code-quality, secerts-scan, dependency-scan, docker-scan, tests]
+        uses: ./.github/workflows/docker-build-push.yml
+
+    tirvy:
+        needs: [build]
+        uses: ./.github/workflows/image-scan.yml
+        secerts: inherit
+
+    deploy:
+        needs: [trivy]
+        uses: ./.github/workflows/deploy-to-server.yml
+        secerts: inherit
