@@ -8,10 +8,10 @@ jobs:
     code-quality:
         uses: ./.github/workflows/code-quality.yml
 
-    secerts-scan:
-        uses: ./.github/workflows/secerts-scan.yml
+    secrets-scan:
+        uses: ./.github/workflows/secrets-scan.yml
 
-    dependecy-scan:
+    dependency-scan:
         uses: ./.github/workflows/dependency-scan.yml
 
     docker-scan:
@@ -21,15 +21,16 @@ jobs:
         uses: ./.github/workflows/tests.yml
 
     build:
-        needs: [code-quality, secerts-scan, dependency-scan, docker-scan, tests]
+        needs: [code-quality, secrets-scan, dependency-scan, docker-scan, test]
         uses: ./.github/workflows/docker-build-push.yml
+        secrets: inherit 
 
     tirvy:
         needs: [build]
         uses: ./.github/workflows/image-scan.yml
-        secerts: inherit
+        secrets: inherit
 
     deploy:
-        needs: [trivy]
+        needs: [tirvy]
         uses: ./.github/workflows/deploy-to-server.yml
-        secerts: inherit
+        secrets: inherit
