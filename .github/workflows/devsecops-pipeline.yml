@@ -1,37 +1,38 @@
 name: Devsecops End to End Pipeline
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-    code-quality:
-        uses: ./.github/workflows/code-quality.yml
+  code-quality:
+    uses: ./.github/workflows/code-quality.yml
 
-    secrets-scan:
-        uses: ./.github/workflows/secrets-scan.yml
-        secrets: inherit
+  secrets-scan:
+    uses: ./.github/workflows/secrets-scan.yml
+    secrets:
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
 
-    dependency-scan:
-        uses: ./.github/workflows/dependency-scan.yml
+  dependency-scan:
+    uses: ./.github/workflows/dependency-scan.yml
 
-    docker-scan:
-        uses: ./.github/workflows/docker-lint.yml
+  docker-scan:
+    uses: ./.github/workflows/docker-lint.yml
 
-    test:
-        uses: ./.github/workflows/tests.yml
+  test:
+    uses: ./.github/workflows/tests.yml
 
-    build:
-        needs: [code-quality, secrets-scan, dependency-scan, docker-scan, test]
-        uses: ./.github/workflows/docker-build-push.yml
-        secrets: inherit 
+  build:
+    needs: [code-quality, secrets-scan, dependency-scan, docker-scan, test]
+    uses: ./.github/workflows/docker-build-push.yml
+    secrets: inherit 
 
-    trivy:
-        needs: [build]
-        uses: ./.github/workflows/image-scan.yml
-        secrets: inherit
+  trivy:
+    needs: [build]
+    uses: ./.github/workflows/image-scan.yml
+    secrets: inherit
 
-    deploy:
-        needs: [trivy]
-        uses: ./.github/workflows/deploy-to-server.yml
-        secrets: inherit
+  deploy:
+    needs: [trivy]
+    uses: ./.github/workflows/deploy-to-server.yml
+    secrets: inherit
