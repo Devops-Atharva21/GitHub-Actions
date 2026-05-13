@@ -11,7 +11,8 @@ jobs:
 
     secrets-scan:
         uses: ./.github/workflows/secrets-scan.yml
-        secrets: inherit
+        secrets:
+            passed_token: ${{ secrets.GITHUB_TOKEN }}
     
     dependency-scan:
         uses: ./.github/workflows/dependency-scan.yml
