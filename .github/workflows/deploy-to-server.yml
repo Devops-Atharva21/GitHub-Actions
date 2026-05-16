@@ -18,7 +18,7 @@ jobs:
             - name: SSH to Prod server & create app floder
               uses: appleboy/ssh-action@v1.0.3
               env: 
-                DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USERNAME }} # Make sure this secret exists!
+                DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }} # Make sure this secret exists!
                 DOCKER_TAG: latest # Or however you tag your images
               with:
                 host: ${{ secrets.EC2_SSH_HOST }}
